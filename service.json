@@ -1,0 +1,39 @@
+{
+    "cluster": "ecs-cp-cluster",
+    "serviceName": "ecs-cp-service",
+    "taskDefinition": "ecs-two-cont:1",
+    "loadBalancers": [
+        {
+            "targetGroupArn": "arn:aws:elasticloadbalancing:us-east-1:997477333591:targetgroup/ecs-cp-tg1/339e20f53ab916d7",
+            "containerName": "flaskapp",
+            "containerPort": 80
+        }
+    ],
+    "desiredCount": 1,
+    "launchType": "FARGATE",
+    "platformVersion": "LATEST",
+    "networkConfiguration": {
+        "awsvpcConfiguration": {
+            "subnets": [
+                "subnet-0ef7170ad4e4195ec",
+                "subnet-0596f630f9ed4875e"
+            ],
+            "securityGroups": [
+                "sg-02e4fb9d70cc541f6"
+            ],
+            "assignPublicIp": "ENABLED"
+        }
+    },
+    "schedulingStrategy": "REPLICA",
+    "deploymentController": {
+        "type": "ECS"
+    },
+    "tags": [
+        {
+            "key": "auto-delete",
+            "value": "never"
+        }
+    ],
+    "enableECSManagedTags": true,
+    "propagateTags": "TASK_DEFINITION"
+}
