@@ -1,0 +1,10 @@
+[
+  {
+    "name": "flaskapp5000",
+    "imageUri": "public.ecr.aws/h3k0q0x9/flaskapp5000"
+  },
+  {
+    "name": "flaskapp",
+    "imageUri": "997477333591.dkr.ecr.us-east-1.amazonaws.com/flaskapp"
+  }
+]
