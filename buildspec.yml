@@ -3,7 +3,7 @@ phases:
   pre_build:
     commands:
        - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 997477333591.dkr.ecr.us-east-1.amazonaws.com
-       - ECR_REPO_FRONTEND_URI="997477333591.dkr.ecr.us-east-1.amazonaws.com/flaskapp"
+       - ECR_REPO_FRONTEND_URI="997477333591.dkr.ecr.us-east-1.amazonaws.com/flaskapp-rolling"
        - TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-8)
   build:
     commands:
@@ -13,7 +13,6 @@ phases:
        - IMAGE_URI=$ECR_REPO_FRONTEND_URI:$TAG
        - printf '[{"name":"flaskapp","imageUri":"$IMAGE_URI"}]' > imagedefinitions.json
        - printf '[{"name":"flaskapp5000","imageUri":"public.ecr.aws/h3k0q0x9/flaskapp5000"}]' > imagedefinitions.json
-
 artifacts:
   files:
     - imagedefinitions.json
